@@ -9,8 +9,8 @@ climb and descend profiles, which for example could save 1-2% of fuel.
 
 References:
 [![DOI](https://zenodo.org/badge/148370950.svg)](https://zenodo.org/badge/latestdoi/148370950)
-[![DOI](https://zenodo.org/badge/148370950.svg)](https://arxiv.org/pdf/1905.01303.pdf)
 [![DOI](https://travis-ci.com/alan-turing-institute/simurgh.svg?branch=master)](https://travis-ci.com/alan-turing-institute/simurgh)
+- Paper: [Brittain, M., and Pei, W.](https://arxiv.org/pdf/1905.01303.pdf)
 - [Bluebird](https://github.com/alan-turing-institute/bluebird)
 - [Twitcher](https://github.com/alan-turing-institutetwitcher)
 - [Dodo](https://github.com/alan-turing-institute/dodo)
@@ -99,7 +99,7 @@ True
 
 ## Train Agent
 
-Start the Jupyter notebook ATC-RL.ipynb
+Please start respective single and multi-agent Jupyter notebooks.
 
 
 
