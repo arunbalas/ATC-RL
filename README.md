@@ -1,5 +1,6 @@
 # ATC-RL
-This project is about application of reinforcement learning to air traffic control. The goal is to train a neural network to perform basic Air Traffic Control Tasks through reinforcement learning. 
+This project is about application of reinforcement learning to real time system control. The goal is to train a neural network to perform basic task to control real system through reinforcement learning. 
+The case study that is currently being worked on is as follows:
 In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircraft. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Optimising for the multiple objectives while accounting for uncertainty (e.g., due to aircraft mass, pilot behaviour or weather conditions) makes this a particularly complex task.
 In addition, this approach could improve throughput of a sector, noise abatement and increase efficiency through continuous 
 climb and descend profiles, which for example could save 1-2% of fuel. 
