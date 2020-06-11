@@ -1,126 +1,102 @@
 # ATC-RL
-This project is about application of reinforcement learning to air traffic control 
+This project is about application of reinforcement learning to air traffic control. The goal is to train a neural network to perform basic Air Traffic Control Tasks through reinforcement learning. 
+In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircraft. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Optimising for the multiple objectives while accounting for uncertainty (e.g., due to aircraft mass, pilot behaviour or weather conditions) makes this a particularly complex task.
+In addition, this approach could improve throughput of a sector, noise abatement and increase efficiency through continuous 
+climb and descend profiles, which for example could save 1-2% of fuel. 
 
-## Motivation for this project format:
-- **Insight_Project_Framework** : Put all source code for production within structured directory
-- **tests** : Put all source code for testing in an easy to find location
-- **configs** : Enable modification of all preset variables within single directory (consisting of one or many config files for separate tasks)
-- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installation
-- **build** : Include scripts that automate building of a standalone environment
-- **static** : Any images or content to include in the README or web framework if part of the pipeline
+References:
+[![DOI](https://zenodo.org/badge/148370950.svg)](https://zenodo.org/badge/latestdoi/148370950)
+[![DOI](https://zenodo.org/badge/148370950.svg)](https://arxiv.org/pdf/1905.01303.pdf)
+[![DOI](https://travis-ci.com/alan-turing-institute/simurgh.svg?branch=master)](https://travis-ci.com/alan-turing-institute/simurgh)
+- [Bluebird](https://github.com/alan-turing-institute/bluebird)
+- [Twitcher](https://github.com/alan-turing-institutetwitcher)
+- [Dodo](https://github.com/alan-turing-institute/dodo)
+- [Aviary](https://github.com/alan-turing-institute/aviary)
 
 ## Setup
-Clone repository and update python path
-```
-repo_name=Insight_Project_Framework # URL of your new repository
-username=mrubash1 # Username for your personal github account
-git clone https://github.com/$username/$repo_name
-cd $repo_name
-echo "export $repo_name=${PWD}" >> ~/.bash_profile
-echo "export PYTHONPATH=$repo_name/src:${PYTHONPATH}" >> ~/.bash_profile
-source ~/.bash_profile
-```
-Create new development branch and switch onto it
-```
-branch_name=dev-readme_requisites-20180905 # Name of development branch, of the form 'dev-feature_name-date_of_creation'}}
-git checkout -b $branch_name
+Clone repository:
+```bash
+git clone --branch develop https://github.com/arunbalas/ATC-RL.git
 ```
 
-## Initial Commit
-Lets start with a blank slate: remove `.git` and re initialize the repo
-```
-cd $repo_name
-rm -rf .git   
-git init   
-git status
-```  
-You'll see a list of file, these are files that git doesn't recognize. At this point, feel free to change the directory names to match your project. i.e. change the parent directory Insight_Project_Framework and the project directory Insight_Project_Framework:
-Now commit these:
-```
-git add .
-git commit -m "Initial commit"
-git push origin $branch_name
+## Requisites & Installation
+
+Please refer to requirements.txt file.
+
+```bash
+pip install -r requirements.txt
 ```
 
-## Requisites
 
-- List all packages and software needed to build the environment
-- This could include cloud command line tools (i.e. gsutil), package managers (i.e. conda), etc.
+### Dependencies
 
-#### Dependencies
+- Need Bluesky, Bluebird and Pydodo which can be easily installed by following the steps given below:
 
-- [Streamlit](streamlit.io)
+### 1. Clone this repository
 
-#### Installation
-To install the package above, pleae run:
-```shell
-pip install -r requiremnts
+
+```{bash}
+git clone https://github.com/alan-turing-institute/simurgh.git
 ```
 
-## Build Environment
-- Include instructions of how to launch scripts in the build subfolder
-- Build scripts can include shell scripts or python setup.py files
-- The purpose of these scripts is to build a standalone environment, for running the code in this repository
-- The environment can be for local use, or for use in a cloud environment
-- If using for a cloud environment, commands could include CLI tools from a cloud provider (i.e. gsutil from Google Cloud Platform)
-```
-# Example
+All commands described in the subsequent sections are meant to be run from inside the repo. After cloning the repo make sure to run:
 
-# Step 1
-# Step 2
+```{bash}
+cd simurgh
 ```
 
-## Configs
-- We recommond using either .yaml or .txt for your config files, not .json
-- **DO NOT STORE CREDENTIALS IN THE CONFIG DIRECTORY!!**
-- If credentials are needed, use environment variables or HashiCorp's [Vault](https://www.vaultproject.io/)
+### 2. Run BlueBird, BlueSky & Twicher with Docker
 
+Make sure you have [Docker](https://www.docker.com/get-started) installed.
 
-## Test
-- Include instructions for how to run all tests after the software is installed
-```
-# Example
+If you have Docker installed and have cloned this repo then run:
 
-# Step 1
-# Step 2
+```{bash}
+docker-compose up -d
 ```
 
-## Run Inference
-- Include instructions on how to run inference
-- i.e. image classification on a single image for a CNN deep learning project
-```
-# Example
+This pulls down the pre-built images from DockerHub and
+starts each container in the right order.
 
-# Step 1
-# Step 2
-```
+Then all one needs to do is go to
+`http://localhost:8080` where Twitcher will be running.
 
-## Build Model
-- Include instructions of how to build the model
-- This can be done either locally or on the cloud
-```
-# Example
+_Note_: If this is the first time running this command, it may take some time to
+download and extract all the layers involved.
 
-# Step 1
-# Step 2
+Then to close this, run:
+
+```
+docker-compose down
 ```
 
-## Serve Model
-- Include instructions of how to set up a REST or RPC endpoint
-- This is for running remote inference via a custom model
-```
-# Example
+This will shutdown the running instances.
 
-# Step 1
-# Step 2
+### 3. Install PyDodo
+
+PyDodo is the Python implementation of Dodo.
+
+To install:
+
+```bash
+git clone https://github.com/alan-turing-institute/dodo.git
+pip install dodo/Pydodo
 ```
 
-## Analysis
-- Include some form of EDA (exploratory data analysis)
-- And/or include benchmarking of the model and results
-```
-# Example
+If BlueSky and BlueBird are running (see previous step), then one can communicate with the simulator (via
+BlueBird) using PyDodo:
 
-# Step 1
-# Step 2
+```python
+>>> import pydodo
+>>>
+>>> pydodo.reset_simulation()
+True
+>>>
 ```
+
+## Train Agent
+
+Start the Jupyter notebook ATC-RL.ipynb
+
+
+
