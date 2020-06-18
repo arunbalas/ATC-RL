@@ -4,6 +4,16 @@ This project is about application of reinforcement learning to real time system 
 The case study that is currently being worked on is as follows:
 
 In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircraft. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Optimising for the multiple objectives while accounting for uncertainty (e.g., due to aircraft mass, pilot behaviour or weather conditions) makes this a particularly complex task.
+
+### Sample performance with random starting locations:
+The RL algorithm is tested for 1000 different random locations to check the model performance for unseen scenarios. The number of crashes were around 90, but the performance was not that bad given the training time. This can certainly be improved by modifying the parameters and adding some more action variables.
+
+<!--- ![sample_gif](https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif) -->
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif">
+</p>
+
 In addition, this approach could improve throughput of a sector, noise abatement and increase efficiency through continuous 
 climb and descend profiles, which for example could save 1-2% of fuel. 
 
