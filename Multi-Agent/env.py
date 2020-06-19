@@ -72,9 +72,21 @@ class SimurghEnv(gym.Env):
         Returns:
             observation (object): the initial observation.
         """
-        pydodo.reset_simulation()
+        pydodo.reset_simulation() 
+            
+        with open('cartesian_2agent.json') as f:
+            data = json.load(f)
+        
+        data['aircraft'][0]['startPosition'][0] = np.random.uniform(low=-0.6, high=0.6)
+        data['aircraft'][1]['startPosition'][1] = np.random.uniform(low=51.1, high=51.9)
+        with open("modified.json", "w") as write_file:
+            json.dump(data, write_file, indent=4)
+            
         pydodo.upload_sector('sector-X-sector-X-140-400.geojson', 'test_sector')
-        pydodo.upload_scenario('cartesian_2agent.json', 'test_scenario')
+        pydodo.upload_scenario('modified.json', 'test_scenario')
+        # pydodo.upload_sector('sector-X-sector-X-140-400.geojson', 'test_sector')
+        # pydodo.upload_scenario('cartesian_2agent.json', 'test_scenario')
+        
 
 
     def close(self):
