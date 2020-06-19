@@ -2,7 +2,8 @@
 This project is about application of reinforcement learning to real time system control. In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircrafts. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Hence, to learn such complex behavior and solve such environments, Deep Reinforcement Learning is utilized in this project.
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif">
+  <img width="300" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif1.gif">
+  <img width="300" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif">
 </p>
 
 
@@ -86,7 +87,9 @@ The RL algorithm is tested for 1000 different random locations to check the mode
 
 <!--- ![sample_gif](https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif) -->
 
-
+<p align="center">
+  <img width="460" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif">
+</p>
 
 
 #### References:
