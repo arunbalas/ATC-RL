@@ -15,7 +15,7 @@ import streamlit as st
 import pandas as pd
 
 
-state_size = 8
+state_size = 7
 action_size = 1
 env = SimurghEnv()
 env.observation_space = state_size
@@ -25,7 +25,7 @@ agent = Agent(state_size=state_size, action_size=action_size, random_seed=10)
 
 
 
-agent = Agent(state_size=8, action_size=1, random_seed=10)
+agent = Agent(state_size=7, action_size=1, random_seed=10)
 agent.actor_local.load_state_dict(torch.load('checkpoint_actor.pth', map_location='cpu'))
 agent.critic_local.load_state_dict(torch.load('checkpoint_critic.pth', map_location='cpu'))
 
