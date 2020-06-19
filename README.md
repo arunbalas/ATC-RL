@@ -78,7 +78,7 @@ The python file main.py will initiate the training. To see the training and vali
 python main.py
 ```
 ### Sample performance with random starting locations:
-The RL algorithm is tested for 1000 different random locations to check the model performance for unseen scenarios. The number of crashes were around 90, but the performance was not that bad given the training time. This can certainly be improved by modifying the parameters and adding some more action variables.
+The RL algorithm is tested for 1000 different random locations to check the model performance for unseen scenarios. The number of crashes were around 90, but the performance was not that bad given the training time. This can certainly be improved by modifying the parameters and adding some more action variables. The verification.py file will run the trained agent with different starting locations. The user can change the number of episodes to run.
 
 <!--- ![sample_gif](https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif) -->
 
@@ -86,7 +86,7 @@ The RL algorithm is tested for 1000 different random locations to check the mode
   <img width="460" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif">
 </p>
 
-The verification file will run the trained agent with different starting locations. The user can change the number of episodes to run.
+
 
 #### References:
 [![DOI](https://zenodo.org/badge/148370950.svg)](https://zenodo.org/badge/latestdoi/148370950)
