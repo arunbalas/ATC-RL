@@ -1,36 +1,6 @@
 # ATC-RL
-This project is about application of reinforcement learning to real time system control. The goal is to train a neural network to perform basic task to control real system through reinforcement learning. 
+This project is about application of reinforcement learning to real time system control. In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircrafts. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Hence, to learn such complex behavior and solve such environments, Deep Reinforcement Learning is utilized in this project.
 
-The case study that is currently being worked on is as follows:
-
-In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircraft. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Optimising for the multiple objectives while accounting for uncertainty (e.g., due to aircraft mass, pilot behaviour or weather conditions) makes this a particularly complex task.
-
-### Sample performance with random starting locations:
-The RL algorithm is tested for 1000 different random locations to check the model performance for unseen scenarios. The number of crashes were around 90, but the performance was not that bad given the training time. This can certainly be improved by modifying the parameters and adding some more action variables.
-
-<!--- ![sample_gif](https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif) -->
-
-<p align="center">
-  <img width="460" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif">
-</p>
-
-In addition, this approach could improve throughput of a sector, noise abatement and increase efficiency through continuous 
-climb and descend profiles, which for example could save 1-2% of fuel. 
-
-References:
-[![DOI](https://zenodo.org/badge/148370950.svg)](https://zenodo.org/badge/latestdoi/148370950)
-[![DOI](https://travis-ci.com/alan-turing-institute/simurgh.svg?branch=master)](https://travis-ci.com/alan-turing-institute/simurgh)
-- Paper: [Brittain, M., and Pei, W.](https://arxiv.org/pdf/1905.01303.pdf)
-- [Bluebird](https://github.com/alan-turing-institute/bluebird)
-- [Twitcher](https://github.com/alan-turing-institutetwitcher)
-- [Dodo](https://github.com/alan-turing-institute/dodo)
-- [Aviary](https://github.com/alan-turing-institute/aviary)
-
-## Setup
-Clone repository:
-```bash
-git clone --branch develop https://github.com/arunbalas/ATC-RL.git
-```
 
 ## Requisites & Installation
 
@@ -45,7 +15,7 @@ pip install -r requirements.txt
 
 - Need Bluesky, Bluebird and Pydodo which can be easily installed by following the steps given below:
 
-### 1. Clone this repository
+### 1. Clone Simurgh repository
 
 
 ```{bash}
@@ -96,20 +66,34 @@ git clone https://github.com/alan-turing-institute/dodo.git
 pip install dodo/Pydodo
 ```
 
-If BlueSky and BlueBird are running (see previous step), then one can communicate with the simulator (via
-BlueBird) using PyDodo:
-
-```python
->>> import pydodo
->>>
->>> pydodo.reset_simulation()
-True
->>>
+## Clone my repository (Note: This repository needs to be clone into simurgh folder):
+```bash
+git clone --branch develop https://github.com/arunbalas/ATC-RL.git
 ```
 
 ## Train Agent
+The python file main.py will initiate the training. To see the training and validation use Twitcher (http://localhost:8080/). It is also possible to see the validation running in streamlit (http://localhost:8501/).
 
-Please start respective single and multi-agent Jupyter notebooks.
+```bash
+python main.py
+```
+### Sample performance with random starting locations:
+The RL algorithm is tested for 1000 different random locations to check the model performance for unseen scenarios. The number of crashes were around 90, but the performance was not that bad given the training time. This can certainly be improved by modifying the parameters and adding some more action variables.
 
+<!--- ![sample_gif](https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif) -->
 
+<p align="center">
+  <img width="460" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif">
+</p>
+
+The verification file will run the trained agent with different starting locations. The user can change the number of episodes to run.
+
+#### References:
+[![DOI](https://zenodo.org/badge/148370950.svg)](https://zenodo.org/badge/latestdoi/148370950)
+[![DOI](https://travis-ci.com/alan-turing-institute/simurgh.svg?branch=master)](https://travis-ci.com/alan-turing-institute/simurgh)
+- Paper: [Brittain, M., and Pei, W.](https://arxiv.org/pdf/1905.01303.pdf)
+- [Bluebird](https://github.com/alan-turing-institute/bluebird)
+- [Twitcher](https://github.com/alan-turing-institutetwitcher)
+- [Dodo](https://github.com/alan-turing-institute/dodo)
+- [Aviary](https://github.com/alan-turing-institute/aviary)
 
