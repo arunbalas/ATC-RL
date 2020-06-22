@@ -4,12 +4,12 @@ import random
 import gym
 import gym.spaces
 import numpy as np
-from gym.envs.classic_control import rendering
+#from gym.envs.classic_control import rendering
 from gym.utils import seeding
 from numba import jit
 
-from envs.atc.rendering import Label
-from envs.atc.themes import ColorScheme
+#from envs.atc.rendering import Label
+#from envs.atc.themes import ColorScheme
 from . import model
 from . import scenarios
 
@@ -364,42 +364,42 @@ class AtcGym(gym.Env):
 
         return self.state
 
-    def render(self, mode='human'):
-        """
-        Rendering the environments state
-        :type mode: Either "human" for direct to screen rendering or "rgb_array"
-        """
-        if self.viewer is None:
-            self._padding = 10
-            screen_width = 600
-
-            world_size_x = self._world_x_max - self._world_x_min
-            world_size_y = self._world_y_max - self._world_y_min
-            self._scale = screen_width / world_size_x
-            screen_height = int(world_size_y * self._scale)
-
-            from gym.envs.classic_control import rendering
-            from pyglet import gl
-            self.viewer = rendering.Viewer(screen_width + 2 * self._padding, screen_height + 2 * self._padding)
-
-            background = rendering.FilledPolygon([(0, 0), (0, screen_height + 2 * self._padding),
-                                                  (screen_width + 2 * self._padding, screen_height + 2 * self._padding),
-                                                  (screen_width + 2 * self._padding, 0)])
-            background.set_color(*ColorScheme.background_inactive)
-            self.viewer.add_geom(background)
-
-            gl.glEnable(gl.GL_LINE_SMOOTH)
-            gl.glEnable(gl.GL_POLYGON_SMOOTH)
-
-            self._render_mvas()
-            self._render_runway()
-            self._render_faf()
-            self._render_approach()
-
-        self._render_airplane(self._airplane)
-        self._render_reward()
-
-        return self.viewer.render(mode == 'rgb_array')
+ #   def render(self, mode='human'):
+ #       """
+ #       Rendering the environments state
+ #       :type mode: Either "human" for direct to screen rendering or "rgb_array"
+ #       """
+ #       if self.viewer is None:
+ #           self._padding = 10
+ #           screen_width = 600
+#
+ #           world_size_x = self._world_x_max - self._world_x_min
+ #           world_size_y = self._world_y_max - self._world_y_min
+ #           self._scale = screen_width / world_size_x
+ #           screen_height = int(world_size_y * self._scale)
+#
+ #           from gym.envs.classic_control import rendering
+ #           from pyglet import gl
+ #           self.viewer = rendering.Viewer(screen_width + 2 * self._padding, screen_height + 2 * self._padding)
+#
+#            background = rendering.FilledPolygon([(0, 0), (0, screen_height + 2 * self._padding),
+#                                                  (screen_width + 2 * self._padding, screen_height + 2 * self._padding),
+#                                                  (screen_width + 2 * self._padding, 0)])
+#            background.set_color(*ColorScheme.background_inactive)
+#            self.viewer.add_geom(background)
+#
+#            gl.glEnable(gl.GL_LINE_SMOOTH)
+#            gl.glEnable(gl.GL_POLYGON_SMOOTH)
+#
+#            self._render_mvas()
+#            self._render_runway()
+#            self._render_faf()
+#            self._render_approach()
+#
+#        self._render_airplane(self._airplane)
+#        self._render_reward()
+#
+#        return self.viewer.render(mode == 'rgb_array')
 
     def _render_reward(self):
         total_reward = "Total reward: %.2f" % self.total_reward
@@ -411,81 +411,146 @@ class AtcGym(gym.Env):
         self.viewer.add_onetime(label_total)
         self.viewer.add_onetime(label_last)
 
-    def _render_airplane(self, airplane: model.Airplane):
-        """
-        Renders the airplane symbol and adjacent information onto the screen
+ #   def _render_airplane(self, airplane: model.Airplane):
+ #       """
+ #       Renders the airplane symbol and adjacent information onto the screen
+#
+#        Already supports multiple airplanes in the environment.#
+#
+#        :param airplane: Airplane to render
+#        :return: None
+#        """
+#        render_size = 4
+#        vector = self._screen_vector(airplane.x, airplane.y)
+#        corner_vector = np.array([[0], [render_size]])
+#        corner_top_right = np.dot(model.rot_matrix(45), corner_vector) + vector
+#        corner_bottom_right = np.dot(model.rot_matrix(135), corner_vector) + vector
+#        corner_bottom_left = np.dot(model.rot_matrix(225), corner_vector) + vector
+#        corner_top_left = np.dot(model.rot_matrix(315), corner_vector) + vector
+#
+#        symbol = rendering.PolyLine([corner_top_right, corner_bottom_right, corner_bottom_left, corner_top_left], True)
+#        symbol.set_color(*ColorScheme.airplane)
+#        symbol.set_linewidth(2)
+#        self.viewer.add_onetime(symbol)
+#
+#        label_pos = np.dot(model.rot_matrix(135), 2 * corner_vector) + vector
+#        render_altitude = round(airplane.h / 100)
+#        render_speed = round(airplane.v / 10)
+#        render_text = "%d  %d" % (render_altitude, render_speed)
+#        label_name = Label(airplane.name, x=label_pos[0][0], y=label_pos[1][0])
+#        label_details = Label(render_text, x=label_pos[0][0], y=label_pos[1][0] - 15)
+#        self.viewer.add_onetime(label_name)
+#        self.viewer.add_onetime(label_details)
+#
+#        n = len(airplane.position_history)
+#        for i in range(n - 5, max(0, n - 25), -1):
+#            if i % 5 == 0:
+#                circle = rendering.make_circle(radius=2, res=12)
+#                screen_vector = self._screen_vector(airplane.position_history[i][0], airplane.position_history[i][1])
+#                transform = rendering.Transform(translation=(screen_vector[0][0], screen_vector[1][0]))
+#                circle.add_attr(transform)
+#                circle.set_color(*ColorScheme.airplane)
+#                self.viewer.add_onetime(circle)
+#
+#    def _render_approach(self):
+# #       """
+# #       Render the approach path on the screen
+#
+#        Currently only supports a single runway and a single approach corridor
+#
+####        :return: None
+###        """
+##        iaf_x = self._runway.corridor.iaf[0][0]
+#        iaf_y = self._runway.corridor.iaf[1][0]
+#        dashes = 48
+#        runway_vector = self._screen_vector(self._runway.x, self._runway.y)
+#        runway_iaf = np.array([[iaf_x - self._runway.x], [iaf_y - self._runway.y]]) * self._scale
+#        for i in range(int(dashes / 2 + 1)):
+#            start = runway_vector + runway_iaf / dashes * 2 * i
+#            end = runway_vector + runway_iaf / dashes * (2 * i + 1)
+#            dash = rendering.PolyLine([start, end], False)
+#            dash.set_color(*ColorScheme.lines_info)
+#            self.viewer.add_geom(dash)
+#
+#    def _render_faf(self):
+#        """
+#        Renders the final approach fix symbol onto the screen
+#
+#        Currently only supports a single runway and a single approach corridor
+#
+#        :return: None
+#        """
+#        faf_screen_render_size = 6
+#
+#        faf_x = self._runway.corridor.faf[0][0]
+#        faf_y = self._runway.corridor.faf[1][0]
+#        faf_vector = self._screen_vector(faf_x, faf_y)
+#
+#        corner_vector = np.array([[0], [faf_screen_render_size]])
+#        corner_top = faf_vector + corner_vector
+#        corner_right = np.dot(model.rot_matrix(121), corner_vector) + faf_vector
+#        corner_left = np.dot(model.rot_matrix(242), corner_vector) + faf_vector
+#
+#        poly_line = rendering.PolyLine([corner_top, corner_right, corner_left], True)
+#        poly_line.set_color(*ColorScheme.lines_info)
+#        poly_line.set_linewidth(2)
+#        self.viewer.add_geom(poly_line)
 
-        Already supports multiple airplanes in the environment.
-
-        :param airplane: Airplane to render
-        :return: None
-        """
-        render_size = 4
-        vector = self._screen_vector(airplane.x, airplane.y)
-        corner_vector = np.array([[0], [render_size]])
-        corner_top_right = np.dot(model.rot_matrix(45), corner_vector) + vector
-        corner_bottom_right = np.dot(model.rot_matrix(135), corner_vector) + vector
-        corner_bottom_left = np.dot(model.rot_matrix(225), corner_vector) + vector
-        corner_top_left = np.dot(model.rot_matrix(315), corner_vector) + vector
-
-        symbol = rendering.PolyLine([corner_top_right, corner_bottom_right, corner_bottom_left, corner_top_left], True)
-        symbol.set_color(*ColorScheme.airplane)
-        symbol.set_linewidth(2)
-        self.viewer.add_onetime(symbol)
-
-        label_pos = np.dot(model.rot_matrix(135), 2 * corner_vector) + vector
-        render_altitude = round(airplane.h / 100)
-        render_speed = round(airplane.v / 10)
-        render_text = "%d  %d" % (render_altitude, render_speed)
-        label_name = Label(airplane.name, x=label_pos[0][0], y=label_pos[1][0])
-        label_details = Label(render_text, x=label_pos[0][0], y=label_pos[1][0] - 15)
-        self.viewer.add_onetime(label_name)
-        self.viewer.add_onetime(label_details)
-
-        n = len(airplane.position_history)
-        for i in range(n - 5, max(0, n - 25), -1):
-            if i % 5 == 0:
-                circle = rendering.make_circle(radius=2, res=12)
-                screen_vector = self._screen_vector(airplane.position_history[i][0], airplane.position_history[i][1])
-                transform = rendering.Transform(translation=(screen_vector[0][0], screen_vector[1][0]))
-                circle.add_attr(transform)
-                circle.set_color(*ColorScheme.airplane)
-                self.viewer.add_onetime(circle)
-
-    def _render_approach(self):
-        """
-        Render the approach path on the screen
-
-        Currently only supports a single runway and a single approach corridor
-
-        :return: None
-        """
-        iaf_x = self._runway.corridor.iaf[0][0]
-        iaf_y = self._runway.corridor.iaf[1][0]
-        dashes = 48
-        runway_vector = self._screen_vector(self._runway.x, self._runway.y)
-        runway_iaf = np.array([[iaf_x - self._runway.x], [iaf_y - self._runway.y]]) * self._scale
-        for i in range(int(dashes / 2 + 1)):
-            start = runway_vector + runway_iaf / dashes * 2 * i
-            end = runway_vector + runway_iaf / dashes * (2 * i + 1)
-            dash = rendering.PolyLine([start, end], False)
-            dash.set_color(*ColorScheme.lines_info)
-            self.viewer.add_geom(dash)
-
-
-
-    def _screen_vector(self, x, y):
-        """
-        Converts an in world vector to an on screen vector by shifting and scaling
-        :param x: World vector x
-        :param y: World vector y
-        :return: Numpy array vector with on screen coordinates
-        """
-        return np.array([
-            [(x - self._world_x_min) * self._scale],
-            [(y - self._world_y_min) * self._scale]
-        ])
-
+#    def _render_mvas(self):
+#        """
+#        Renders the outlines of the minimum vectoring altitudes onto the screen.
+#
+#        :return: None
+#        """
+#
+#        def transform_world_to_screen(coords):
+#            return [((coord[0] - self._world_x_min) * self._scale + self._padding,
+#                     (coord[1] - self._world_y_min) * self._scale + self._padding) for coord in coords]
+#
+#        for mva in self._mvas:
+#            coordinates = transform_world_to_screen(mva.area.exterior.coords)
+#
+#            fill = rendering.FilledPolygon(coordinates)
+#            fill.set_color(*ColorScheme.background_active)
+#            self.viewer.add_geom(fill)
+#
+#        for mva in self._mvas:
+#            coordinates = transform_world_to_screen(mva.area.exterior.coords)
+#
+#            outline = rendering.PolyLine(coordinates, True)
+#            outline.set_linewidth(1)
+#            outline.set_color(*ColorScheme.mva)
+#            self.viewer.add_geom(outline)
+#
+#    def _render_runway(self):
+#        """
+#        Renders the runway symbol onto the screen
+#
+#        Currently only supports a single runway and a single approach corridor
+#        :return: None
+#        """
+#        runway_length = 1.7 * self._scale
+#        runway_to_threshold_vector = \
+#            np.dot(model.rot_matrix(self._runway.phi_from_runway), np.array([[0], [runway_length / 2]]))
+#        runway_vector = self._screen_vector(self._runway.x, self._runway.y)
+#        runway_line = rendering.PolyLine(
+#            [runway_vector - runway_to_threshold_vector, runway_vector + runway_to_threshold_vector], False)
+#        runway_line.set_linewidth(5)
+#        runway_line.set_color(*ColorScheme.runway)
+#        self.viewer.add_geom(runway_line)
+#
+#    def _screen_vector(self, x, y):
+#        """
+#        Converts an in world vector to an on screen vector by shifting and scaling
+#        :param x: World vector x
+#        :param y: World vector y
+#        :return: Numpy array vector with on screen coordinates
+#        """
+#        return np.array([
+#            [(x - self._world_x_min) * self._scale],
+#            [(y - self._world_y_min) * self._scale]
+#        ])
+#
     def close(self):
         if self.viewer is not None:
             self.viewer.close()
