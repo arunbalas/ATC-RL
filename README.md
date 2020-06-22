@@ -68,7 +68,7 @@ To install:
 
 ```bash
 git clone https://github.com/alan-turing-institute/dodo.git
-pip install dodo/Pydodo
+pip install dodo/PyDodo
 ```
 
 ## Clone my repository (Note: This repository needs to be clone into simurgh folder):
