@@ -7,7 +7,7 @@ Created on Mon Jun 15 19:17:43 2020
 """
 
 import os
-os.system('docker-compose --file ../docker-compose.yml up --detach')
+os.system('docker-compose --file docker-compose.yml up --detach')
 import pydodo
 import gym
 import time
@@ -30,9 +30,9 @@ import time
 from env import SimurghEnv
 import streamlit as st
 
-st.write(pydodo.bluebird_connect.get_bluebird_url())
 print(pydodo.bluebird_connect.get_bluebird_url())
-help(pydodo.bluebird_config)
+print(pydodo.bluebird_connect.get_bluebird_url())
+#help(pydodo.bluebird_config)
 st.write(pydodo.all_positions())
 pydodo.simulation_info()
 pydodo.upload_sector('sector-X-sector-X-140-400.geojson', 'test_sector')
@@ -44,10 +44,10 @@ pydodo.upload_scenario('cartesian_2agent.json', 'test_scenario')
 
 
 env = SimurghEnv()
-env.observation_space = 8
+env.observation_space = 7
 env.action_space = 1
 num_agents = 2
-agent = Agent(state_size=8, action_size=1, random_seed=10)
+agent = Agent(state_size=7, action_size=1, random_seed=10)
 
 
 # In[279]:
