@@ -42,13 +42,20 @@ pip install dodo/PyDodo
 ```
 
 ## Train Agent
-The python file main.py will initiate the training. To see the training and validation use Twitcher (http://localhost:8080/). It is also possible to see the validation running in streamlit (http://localhost:8501/).
-For single agent:
+The python file main.py will initiate the training. To see the visualization, please use Twitcher (http://localhost:8080/). 
+
+### For Single-Agent:
 ```bash
 cd ATC-RL/Single Agent
 python main.py
 ```
-### Sample performance with random starting locations:
+### For Multi-Agent:
+```bash
+cd ATC-RL/Single Agent
+python main.py
+```
+
+### Sample multi-agent performance with random starting locations:
 The RL algorithm is tested for 1000 different random locations to check the model performance for unseen scenarios. The number of crashes were around 90, but the performance was not that bad given the training time. This can certainly be improved by modifying the parameters and adding some more action variables. The verification.py file will run the trained agent with different starting locations. The user can change the number of episodes to run.
 
 <!--- ![sample_gif](https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif.gif) -->
@@ -61,7 +68,6 @@ The RL algorithm is tested for 1000 different random locations to check the mode
 #### References:
 [![DOI](https://zenodo.org/badge/148370950.svg)](https://zenodo.org/badge/latestdoi/148370950)
 [![DOI](https://travis-ci.com/alan-turing-institute/simurgh.svg?branch=master)](https://travis-ci.com/alan-turing-institute/simurgh)
-- Paper: [Brittain, M., and Pei, W.](https://arxiv.org/pdf/1905.01303.pdf)
 - [Bluebird](https://github.com/alan-turing-institute/bluebird)
 - [Twitcher](https://github.com/alan-turing-institutetwitcher)
 - [Dodo](https://github.com/alan-turing-institute/dodo)
