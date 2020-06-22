@@ -42,14 +42,14 @@ pip install dodo/PyDodo
 ```
 
 ## Train Agent
-The python file main.py will initiate the training. To see the visualization, please use Twitcher (http://localhost:8080/). 
+The python file main.py (located in respective Single-Agent and Multi-Agent folders) will initiate the training. To see the visualization, please use Twitcher (http://localhost:8080/). 
 
-### For Single-Agent:
+### For Single-Agent training:
 ```bash
 cd ATC-RL/Single Agent
 python main.py
 ```
-### For Multi-Agent:
+### For Multi-Agent training:
 ```bash
 cd ATC-RL/Single Agent
 python main.py
