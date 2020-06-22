@@ -2,9 +2,9 @@
 This project is about application of reinforcement learning to air traffic control. In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircrafts. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Hence, to learn such complex behavior and automate the systems, Deep Reinforcement Learning is utilized in this project.
 
 <p align="center">
-  <img width="300" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20single.gif">
-  <img width="300" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20Gif1.gif">
-  <img width="300" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20Gif.gif">
+  <img width="290" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20single.gif">
+  <img width="290" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20Gif1.gif">
+  <img width="290" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20Gif.gif">
 </p>
 
 
