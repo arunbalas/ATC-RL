@@ -1,5 +1,5 @@
 # ATC-RL
-This project is about application of reinforcement learning to real time system control. In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircrafts. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Hence, to learn such complex behavior and solve such environments, Deep Reinforcement Learning is utilized in this project.
+This project is about application of reinforcement learning to air traffic control. In practice, air traffic control operators (ATCOs) monitor a given sector and issue commands to aircraft pilots to ensure safe separation between aircrafts. They also have to consider the number and frequency of instructions issued, fuel efficiency and orderly handover between sectors. Hence, to learn such complex behavior and automate the systems, Deep Reinforcement Learning is utilized in this project.
 
 <p align="center">
   <img width="300" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Final%20Gif1.gif">
@@ -9,77 +9,43 @@ This project is about application of reinforcement learning to real time system 
 
 ## Requisites & Installation
 
-Please refer to requirements.txt file.
+## Clone my repository:
 
 ```bash
-pip install -r requirements.txt
+git clone --branch develop https://github.com/arunbalas/ATC-RL.git
 ```
 
 
 ### Dependencies
 
-- Need Bluesky, Bluebird and Pydodo which can be easily installed by following the steps given below:
+### 1. Install python packages
 
-### 1. Clone Simurgh repository
-
-
-```{bash}
-git clone https://github.com/alan-turing-institute/simurgh.git
+```bash
+pip install -r requirements.txt
 ```
 
-All commands described in the subsequent sections are meant to be run from inside the repo. After cloning the repo make sure to run:
-
-```{bash}
-cd simurgh
-```
-
-### 2. Run BlueBird, BlueSky & Twicher with Docker
-
+### 2. Install Docker
 Make sure you have [Docker](https://www.docker.com/get-started) installed.
 
-If you have Docker installed and have cloned this repo then run:
 
-```{bash}
-docker-compose up -d
-```
-
-This pulls down the pre-built images from DockerHub and
-starts each container in the right order.
-
-Then all one needs to do is go to
-`http://localhost:8080` where Twitcher will be running.
-
-_Note_: If this is the first time running this command, it may take some time to
-download and extract all the layers involved.
-
-Then to close this, run:
-
-```
-docker-compose down
-```
-
-This will shutdown the running instances.
 
 ### 3. Install PyDodo
 
-PyDodo is the Python implementation of Dodo.
+Pydodo is required for multi-agent systems since the environment depends on bluesky simulator.
 
 To install:
 
 ```bash
+cd ATC-RL/Multi-Agent
 git clone https://github.com/alan-turing-institute/dodo.git
 pip install dodo/PyDodo
 ```
 
-## Clone my repository (Note: This repository needs to be clone into simurgh folder):
-```bash
-git clone --branch develop https://github.com/arunbalas/ATC-RL.git
-```
-
 ## Train Agent
 The python file main.py will initiate the training. To see the training and validation use Twitcher (http://localhost:8080/). It is also possible to see the validation running in streamlit (http://localhost:8501/).
-
+For single agent:
 ```bash
+cd ATC-RL/Single Agent
 python main.py
 ```
 ### Sample performance with random starting locations:
