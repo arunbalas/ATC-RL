@@ -3,7 +3,7 @@ import random
 import copy
 from collections import namedtuple, deque
 
-from model import Actor, Critic
+from model1 import Actor, Critic
 
 import torch
 import torch.nn.functional as F
@@ -16,7 +16,7 @@ TAU = 1e-2              # for soft update of target parameters
 LR_ACTOR = 1e-3         # learning rate of the actor 
 LR_CRITIC = 1e-3        # learning rate of the critic
 WEIGHT_DECAY = 0        # L2 weight decay
-EPS = 0.9
+EPS = 0.85
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -81,8 +81,8 @@ class Agent():
         self.actor_local.train()
         if add_noise:
             action += self.eps * self.noise.sample()
-        return action*543
-        #return np.clip(action, -1, 1)
+        #return action
+        return np.clip(action, 100, 300)
 
     def reset(self):
         self.noise.reset()
@@ -113,7 +113,7 @@ class Agent():
         # Minimize the loss
         self.critic_optimizer.zero_grad()
         critic_loss.backward()
-        torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), 1)
+        torch.nn.utils.clip_grad_norm_(self.critic_local.parameters(), 1)
         self.critic_optimizer.step()
 
         # ---------------------------- update actor ---------------------------- #
@@ -198,10 +198,10 @@ class ReplayBuffer:
         states = torch.from_numpy(np.vstack([e.state for e in experiences if e is not None])).float().to(device)
         actions = torch.from_numpy(np.vstack([e.action for e in experiences if e is not None])).float().to(device)
         rewards = torch.from_numpy(np.vstack([e.reward for e in experiences if e is not None])).float().to(device)
-        rewards = rewards.view(-1,1)
+        #rewards = rewards.view(-1,1)
         next_states = torch.from_numpy(np.vstack([e.next_state for e in experiences if e is not None])).float().to(device)
         dones = torch.from_numpy(np.vstack([e.done for e in experiences if e is not None]).astype(np.uint8)).float().to(device)
-        dones = dones.view(-1,1)       
+        #dones = dones.view(-1,1)       
 
         return (states, actions, rewards, next_states, dones)
 

@@ -6,14 +6,11 @@ Created on Mon Jun 15 19:17:43 2020
 """
 
 import gym
-from gym import spaces
-from gym.utils import seeding
 import time
 import numpy as np
 import pydodo
 import json
 from sklearn.neighbors import NearestNeighbors
-import time
 
 class SimurghEnv(gym.Env):
     """Simple 2 flight environment
@@ -28,9 +25,19 @@ class SimurghEnv(gym.Env):
         self.seed()
 
     def obsr(self, obs):
+        obs = pydodo.all_positions()
         obs = np.array(obs)
-        state = obs[:,2:]
-        return np.array(state.tolist(),dtype=np.float32)
+        state = obs[:,3:7]
+        nbrs = NearestNeighbors(n_neighbors=2, algorithm='ball_tree').fit(state)
+        indices = nbrs.kneighbors(state)
+        #print(indices)
+        new_state = np.hstack(state[indices[1]])
+        return np.array(new_state.tolist(),dtype=np.float32)
+
+    # def obsr(self, obs):
+    #     obs = np.array(obs)
+    #     state = obs[:,2:]
+    #     return np.array(state.tolist(),dtype=np.float32)
 
     def step(self, action):
         """
@@ -72,8 +79,8 @@ class SimurghEnv(gym.Env):
         Returns:
             observation (object): the initial observation.
         """
-        pydodo.reset_simulation() 
-            
+        pydodo.reset_simulation()
+        
         with open('cartesian_2agent.json') as f:
             data = json.load(f)
         
@@ -86,7 +93,6 @@ class SimurghEnv(gym.Env):
         pydodo.upload_scenario('modified.json', 'test_scenario')
         # pydodo.upload_sector('sector-X-sector-X-140-400.geojson', 'test_sector')
         # pydodo.upload_scenario('cartesian_2agent.json', 'test_scenario')
-        
 
 
     def close(self):
