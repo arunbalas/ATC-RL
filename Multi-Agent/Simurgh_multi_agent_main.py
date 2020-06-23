@@ -7,7 +7,7 @@ Created on Mon Jun 15 19:17:43 2020
 """
 
 import os
-os.system('docker-compose --file ../docker-compose.yml up --detach')
+os.system('docker-compose --file docker-compose.yml up --detach')
 import pydodo
 import time
 import torch
