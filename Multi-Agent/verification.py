@@ -9,7 +9,7 @@ Created on Mon Jun 15 19:17:43 2020
 
 #%%
 import os
-os.system('docker-compose --file ../docker-compose.yml up --detach')
+os.system('docker-compose --file docker-compose.yml up --detach')
 import pydodo
 import time
 import torch
@@ -22,7 +22,7 @@ import streamlit as st
 import pandas as pd
 st.write(pydodo.bluebird_connect.get_bluebird_url())
 print(pydodo.bluebird_connect.get_bluebird_url())
-help(pydodo.bluebird_config)
+#help(pydodo.bluebird_config)
 st.write(pydodo.all_positions())
 pydodo.simulation_info()
 pydodo.upload_sector('sector-X-sector-X-140-400.geojson', 'test_sector')
