@@ -9,24 +9,11 @@ Created on Mon Jun 15 19:17:43 2020
 import os
 os.system('docker-compose --file docker-compose.yml up --detach')
 import pydodo
-import gym
 import time
-import random
 import torch
 import numpy as np
 from collections import deque
-import matplotlib.pyplot as plt
 from maddpg_agent import Agent
-from gym import spaces
-from gym.utils import seeding
-import itertools
-from pydodo.episode_log import episode_log
-from pydodo import change_altitude
-from pydodo.metrics import loss_of_separation
-from pydodo.request_position import all_positions
-from pydodo.simulation_control import simulation_step, reset_simulation, pause_simulation
-from sklearn.neighbors import NearestNeighbors
-import time
 from env import SimurghEnv
 import streamlit as st
 
@@ -42,7 +29,7 @@ pydodo.upload_scenario('cartesian_2agent.json', 'test_scenario')
 
 # In[276]:
 
-
+#get env
 env = SimurghEnv()
 env.observation_space = 7
 env.action_space = 1
