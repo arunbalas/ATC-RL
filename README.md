@@ -4,6 +4,8 @@ This project is about application of reinforcement learning to air traffic contr
 ## Note: 
 This project will be a part of my paper titled ***"Deep Reinforcement Learning for System Reliability and Intelligence: Applications and Complexities."*** The paper will be published by the end of this year and link to the paper will be updated soon!!
 
+
+
 <p align="center">
   <img width="290" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20single.gif">
   <img width="290" height="300" src="https://github.com/arunbalas/ATC-RL/blob/develop/Images/Final%20Gif1.gif">
@@ -16,7 +18,7 @@ This project will be a part of my paper titled ***"Deep Reinforcement Learning f
 ## Clone my repository:
 
 ```bash
-git clone --branch develop https://github.com/arunbalas/ATC-RL.git
+git clone https://github.com/arunbalas/ATC-RL.git
 ```
 
 
