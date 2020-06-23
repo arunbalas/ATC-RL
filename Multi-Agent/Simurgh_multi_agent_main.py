@@ -19,7 +19,7 @@ import streamlit as st
 
 st.write(pydodo.bluebird_connect.get_bluebird_url())
 print(pydodo.bluebird_connect.get_bluebird_url())
-help(pydodo.bluebird_config)
+#help(pydodo.bluebird_config)
 st.write(pydodo.all_positions())
 pydodo.simulation_info()
 pydodo.upload_sector('sector-X-sector-X-140-400.geojson', 'test_sector')
