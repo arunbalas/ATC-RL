@@ -1,0 +1,139 @@
+{
+    "startTime": "00:00:00",
+    "aircraft": [
+        {
+            "timedelta": 0,
+            "startPosition": [
+                -0.1275,
+                52.082566901155424
+            ],
+            "callsign": "DELTA210",
+            "type": "A320",
+            "departure": "DEP",
+            "destination": "DEST",
+            "currentFlightLevel": 60,
+            "clearedFlightLevel": 100,
+            "requestedFlightLevel": 60,
+            "route": [
+                {
+                    "fixName": "SIN",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.1275,
+                            52.082566901155424
+                        ]
+                    }
+                },
+                {
+                    "fixName": "GATES",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.1275,
+                            51.916128869951486
+                        ]
+                    }
+                },
+                {
+                    "fixName": "ABYSS",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.1275,
+                            51.499999999991324
+                        ]
+                    }
+                },
+                {
+                    "fixName": "HAUNT",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.1275,
+                            51.08383154960223
+                        ]
+                    }
+                },
+                {
+                    "fixName": "LIMBO",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.1275,
+                            50.91735552314279
+                        ]
+                    }
+                }
+            ],
+            "startTime": "00:00:00"
+        },
+        {
+            "timedelta": 0,
+            "startPosition": [
+                -1.0609024169298713,
+                51.49629572437261
+            ],
+            "callsign": "DELTA426",
+            "type": "A346",
+            "departure": "DEP",
+            "destination": "DEST",
+            "currentFlightLevel": 60,
+            "clearedFlightLevel": 100,
+            "requestedFlightLevel": 60,
+            "route": [
+                {
+                    "fixName": "SIREN",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -1.0609024169298713,
+                            51.49629572437261
+                        ]
+                    }
+                },
+                {
+                    "fixName": "WITCH",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.7942364352609249,
+                            51.498110002422806
+                        ]
+                    }
+                },
+                {
+                    "fixName": "ABYSS",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.1275,
+                            51.499999999991324
+                        ]
+                    }
+                },
+                {
+                    "fixName": "DEMON",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            0.5392364352609249,
+                            51.498110002422806
+                        ]
+                    }
+                },
+                {
+                    "fixName": "SATAN",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            0.8059024169298712,
+                            51.49629572437261
+                        ]
+                    }
+                }
+            ],
+            "startTime": "00:00:00"
+        }
+    ]
+}
