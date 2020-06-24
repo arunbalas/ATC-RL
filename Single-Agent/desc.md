@@ -1,1 +1,0 @@
-Single agent DDPG
